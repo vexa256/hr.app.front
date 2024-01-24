@@ -6,6 +6,46 @@
   <link rel="icon" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to Vuetify 3</title>
+
+
+  <style>
+    /* Target the whole HTML document */
+html {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #4285f4 #1a73e8; /* Firefox */
+}
+
+/* Webkit browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4285f4; /* Google blue color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #1a73e8; /* Darker blue on hover */
+}
+
+/* Animation effects */
+::-webkit-scrollbar-thumb {
+  transition: background-color 0.3s;
+}
+
+/* Microsoft Edge */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4285f4 #1a73e8;
+}
+
+    .swal2-container {
+
+      z-index: 901101;
+
+    }
+  </style>
 </head>
 
 <body>

@@ -4,8 +4,6 @@
     <v-toolbar-title>ECSA-HC ERP</v-toolbar-title>
     <v-spacer></v-spacer>
 
-
-
     <!-- Rest of your top bar links... -->
     <v-btn v-for="link in links" :key="link" text>{{ link }}</v-btn>
 
@@ -14,7 +12,9 @@
       <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
           <v-avatar>
-            <v-img src="https://api.lorem.space/image/face?w=80&h=80&hash=af072189" />
+            <v-img
+              src="https://api.lorem.space/image/face?w=80&h=80&hash=af072189"
+            />
           </v-avatar>
         </v-btn>
       </template>
@@ -38,7 +38,11 @@
     <v-divider></v-divider>
     <!-- Menu Items -->
     <v-list dense class="custom-scroll">
-      <v-list-item v-for="item in menuItems" :key="item.title" @click="navigate(item.route)">
+      <v-list-item
+        v-for="item in menuItems"
+        :key="item.title"
+        @click="navigate(item.route)"
+      >
         <v-list-item-content class="d-flex align-center">
           <v-icon class="mr-2">{{ item.icon }}</v-icon>
           <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -46,76 +50,205 @@
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
-
-
-
 </template>
 
 <script>
 export default {
   data() {
     return {
-      links: ['Dash', 'Reports'],
+      links: ["Dash", "Reports"],
       topLinks: [
         // Define top links as required
-        { name: 'Dashboard', route: '/dashboard' },
+        { name: "Dashboard", route: "/dashboard" },
         // Additional top links
       ],
-      search: '',
+      search: "",
       userLinks: [
-        ['mdi-cog', 'Settings'],
-        ['mdi-logout', 'Sign Out'],
+        ["mdi-cog", "Settings"],
+        ["mdi-logout", "Sign Out"],
       ],
       menuItems: [
-    // Dashboard
-    { title: 'Dashboard', icon: 'mdi-view-dashboard', route: '/dashboard' },
+        // Dashboard
+        { title: "Dashboard", icon: "mdi-view-dashboard", route: "/dashboard" },
 
-    // HR Module
-    { title: 'Employee Directory', icon: 'mdi-account-group', route: '/ManageEmployees' },
-    // { title: 'Talent Acquisition', icon: 'mdi-account-plus', route: '/talent-acquisition' },
-    { title: 'Onboarding & Offboarding', icon: 'mdi-account-convert', route: '/onboarding-offboarding' },
-    // { title: 'Time & Attendance', icon: 'mdi-clock', route: '/time-attendance' },
-    { title: 'Leave & Absence', icon: 'mdi-palm-tree', route: '/leave-absence' },
-    { title: 'Performance Management', icon: 'mdi-chart-bell-curve', route: '/performance-management' },
-    // { title: 'Learning & Development', icon: 'mdi-school-outline', route: '/learning-development' },
-    { title: 'Benefits & Compensation', icon: 'mdi-wallet-giftcard', route: '/benefits-compensation' },
-    { title: 'Workforce Analytics', icon: 'mdi-chart-timeline-variant', route: '/workforce-analytics' },
+        // HR Module
 
-    // Payroll Module
-    { title: 'Payroll Administration', icon: 'mdi-cash-register', route: '/payroll-administration' },
-    { title: 'Compensation Planning', icon: 'mdi-cash-100', route: '/compensation-planning' },
-    { title: 'Tax Compliance', icon: 'mdi-calculator-variant-outline', route: '/tax-compliance' },
-    { title: 'Payroll Analytics', icon: 'mdi-chart-areaspline', route: '/payroll-analytics' },
-    { title: 'Employee Reimbursements', icon: 'mdi-cash-refund', route: '/employee-reimbursements' },
+        {
+          title: " Projects",
+          icon: "mdi-office-building", // Suggested icon for Organization Departments
+          route: "/MgtProjects", // Assuming a different route for Departments
+        },
 
-    // Finance Module
-    { title: 'Financial Overview', icon: 'mdi-finance', route: '/financial-overview' },
-    { title: 'Budget Management', icon: 'mdi-bank-outline', route: '/budget-management' },
-    { title: 'Expenditure Tracking', icon: 'mdi-credit-card-clock', route: '/expenditure-tracking' },
-    { title: 'Revenue Management', icon: 'mdi-cash-multiple', route: '/revenue-management' },
-    { title: 'Financial Compliance', icon: 'mdi-scale-balance', route: '/financial-compliance' },
-    { title: 'Asset & Liability', icon: 'mdi-bank', route: '/asset-liability' },
+        {
+          title: " Departments",
+          icon: "mdi-office-building", // Suggested icon for Organization Departments
+          route: "/MgtDepts", // Assuming a different route for Departments
+        },
+        {
+          title: " Clusters",
+          icon: "mdi-account-multiple", // Alternative icon for Organization Clusters
+          route: "/MgtClusters", // Assuming a different route for Clusters
+        },
 
-    // System Management
-    { title: 'User Management', icon: 'mdi-account-multiple', route: '/user-management' },
-    { title: 'System Configuration', icon: 'mdi-cog-outline', route: '/system-configuration' },
-    { title: 'Security & Access', icon: 'mdi-security', route: '/security-access' },
+        {
+          title: " Positions",
+          icon: "mdi-account-multiple", // Alternative icon for Organization Clusters
+          route: "/MgtPositions", // Assuming a different route for Clusters
+        },
 
-    // Analytics and Reporting
-    { title: 'Data Analytics', icon: 'mdi-database-search', route: '/data-analytics' },
-    { title: 'Custom Reports', icon: 'mdi-file-chart-outline', route: '/custom-reports' },
+        {
+          title: "Payroll Labels",
+          icon: "mdi-account-multiple", // Alternative icon for Organization Clusters
+          route: "/MgtPayrolls", // Assuming a different route for Clusters
+        },
 
-    // Support and Resources
-    { title: 'Support Center', icon: 'mdi-lifebuoy', route: '/support-center' },
-    { title: 'Knowledge Base', icon: 'mdi-book-open-page-variant', route: '/knowledge-base' },
-    { title: 'System Updates', icon: 'mdi-update', route: '/system-updates' },
-    { title: 'Notifications & Alerts', icon: 'mdi-bell-ring-outline', route: '/notifications-alerts' }
-],
+        {
+          title: "Employee Database",
+          icon: "mdi-account-group",
+          route: "/MgtEmployees",
+        },
+        {
+          title: "Onboarding & Offboarding",
+          icon: "mdi-account-convert",
+          route: "/onboarding-offboarding",
+        },
+        {
+          title: "Leave & Absence",
+          icon: "mdi-palm-tree",
+          route: "/leave-absence",
+        },
+        {
+          title: "Performance Management",
+          icon: "mdi-chart-bell-curve",
+          route: "/performance-management",
+        },
+        {
+          title: "Benefits & Compensation",
+          icon: "mdi-wallet-giftcard",
+          route: "/benefits-compensation",
+        },
+        {
+          title: "Workforce Analytics",
+          icon: "mdi-chart-timeline-variant",
+          route: "/workforce-analytics",
+        },
+
+        // Payroll Module
+        {
+          title: "Payroll Administration",
+          icon: "mdi-cash-register",
+          route: "/payroll-administration",
+        },
+        {
+          title: "Compensation Planning",
+          icon: "mdi-cash-100",
+          route: "/compensation-planning",
+        },
+        {
+          title: "Tax Compliance",
+          icon: "mdi-calculator-variant-outline",
+          route: "/tax-compliance",
+        },
+        {
+          title: "Payroll Analytics",
+          icon: "mdi-chart-areaspline",
+          route: "/payroll-analytics",
+        },
+        {
+          title: "Employee Reimbursements",
+          icon: "mdi-cash-refund",
+          route: "/employee-reimbursements",
+        },
+
+        // Finance Module
+        {
+          title: "Financial Overview",
+          icon: "mdi-finance",
+          route: "/financial-overview",
+        },
+        {
+          title: "Budget Management",
+          icon: "mdi-bank-outline",
+          route: "/budget-management",
+        },
+        {
+          title: "Expenditure Tracking",
+          icon: "mdi-credit-card-clock",
+          route: "/expenditure-tracking",
+        },
+        {
+          title: "Revenue Management",
+          icon: "mdi-cash-multiple",
+          route: "/revenue-management",
+        },
+        {
+          title: "Financial Compliance",
+          icon: "mdi-scale-balance",
+          route: "/financial-compliance",
+        },
+        {
+          title: "Asset & Liability",
+          icon: "mdi-bank",
+          route: "/asset-liability",
+        },
+
+        // System Management
+        {
+          title: "User Management",
+          icon: "mdi-account-multiple",
+          route: "/user-management",
+        },
+        {
+          title: "System Configuration",
+          icon: "mdi-cog-outline",
+          route: "/system-configuration",
+        },
+        {
+          title: "Security & Access",
+          icon: "mdi-security",
+          route: "/security-access",
+        },
+
+        // Analytics and Reporting
+        {
+          title: "Data Analytics",
+          icon: "mdi-database-search",
+          route: "/data-analytics",
+        },
+        {
+          title: "Custom Reports",
+          icon: "mdi-file-chart-outline",
+          route: "/custom-reports",
+        },
+
+        // Support and Resources
+        {
+          title: "Support Center",
+          icon: "mdi-lifebuoy",
+          route: "/support-center",
+        },
+        {
+          title: "Knowledge Base",
+          icon: "mdi-book-open-page-variant",
+          route: "/knowledge-base",
+        },
+        {
+          title: "System Updates",
+          icon: "mdi-update",
+          route: "/system-updates",
+        },
+        {
+          title: "Notifications & Alerts",
+          icon: "mdi-bell-ring-outline",
+          route: "/notifications-alerts",
+        },
+      ],
+
       sidebarOpen: false,
       departmentModal: false,
       positionModal: false,
-      department: { name: '', description: '' },
-      position: { title: '', description: '' },
+      department: { name: "", description: "" },
+      position: { title: "", description: "" },
     };
   },
   methods: {
@@ -158,18 +291,3 @@ export default {
   },
 };
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
